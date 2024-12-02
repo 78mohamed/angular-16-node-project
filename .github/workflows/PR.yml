@@ -16,21 +16,9 @@ jobs:
         fetch-depth: 0
 
     # Step 2: Fetch changed files in the PR
-    - name: Get Changed Files
-      id: changed-files
-      run: |
-        git diff --name-only origin/main...HEAD > changed_files.txt
-        grep -E '\.(py|js|java)$' changed_files.txt || echo "No relevant changes"
-
-    # Step 3: Install AWS CLI if not pre-installed
-    - name: Install AWS CLI
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y awscli
-
-    # Step 4: Run CodeGuru Security Scan
-    - name: Run CodeGuru Security Scan
-      if: steps.changed-files.outputs.result != ''
-      run: |
-        CHANGED_FILES=$(cat changed_files.txt | tr '\n' ' ')
-        echo $CHANGED_FILES
+    - name: Find changed lines
+      id: changed_lines
+      uses: hestonhoffman/changed-lines@v1
+      
+    - name: Print changed lines
+      run: echo ${{ steps.changed_lines.outputs.changed_lines }}
