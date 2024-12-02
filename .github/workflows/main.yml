@@ -39,7 +39,7 @@ jobs:
       - name: CodeGuru Security
         uses: aws-actions/codeguru-security@v1
         with:
-          source_path: .
+          source_path: ./vul
           aws_region: us-east-1
           fail_on_severity: Critical
 
