@@ -1,6 +1,6 @@
 name: CodeGuru Security Example
 on:
-  push:
+  # push:
     # branches:
     #   - 'master'
   workflow_dispatch:
