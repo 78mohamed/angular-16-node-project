@@ -2,7 +2,7 @@ name: CodeGuru Security on PR Changes
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
 
 permissions:
   id-token: write
